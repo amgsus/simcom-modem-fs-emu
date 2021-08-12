@@ -1,0 +1,17 @@
+{
+  "name": "@amgsus/simcom-modem-fs-emu",
+  "version": "0.1.1",
+  "description": "Emulates file system AT-commands of SIM7070 LTE-modem (read only)",
+  "main": "index.mjs",
+  "keywords": [],
+  "author": "A.G.",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "8.1.0",
+    "joi": "17.4.2",
+    "serialport": "9.2.0"
+  },
+  "engines": {
+    "node": ">=14.0"
+  }
+}
