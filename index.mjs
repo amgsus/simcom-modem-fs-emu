@@ -146,6 +146,7 @@ async function handleGetFileSize(at) {
     let path = getFilePathFromDistribution(dirIndex, fileName);
     verbose(`> Getting size of '${path}'...`);
     let stat = await statFile(path);
+    verbose(`> Size = '${stat.size}' bytes`);
     return [
         `\r\n+${at.command}: ${stat.size}\r\n`,
         OK_RESPONSE_BUFFER
@@ -178,6 +179,7 @@ async function handleReadFile(at) {
         }
     })());
     let portionSize = Buffer.byteLength(portion);
+    verbose(`> Returning ${portionSize} bytes of data`);
     return [
         `\r\n+${at.command}: ${portionSize}\r\n`,
         portion,
