@@ -17,7 +17,10 @@ import * as SerialPort     from "serialport";
 import * as ReadlineParser from "@serialport/parser-readline";
 import Joi                 from "joi";
 
+import crclib from "crc";
+
 import {
+    toHex,
     execRegExpGroups,
     parseParameters,
     validateParameters,
@@ -179,7 +182,8 @@ async function handleReadFile(at) {
         }
     })());
     let portionSize = Buffer.byteLength(portion);
-    verbose(`> Returning ${portionSize} bytes of data`);
+    let blockChecksum = crclib.crc32(portion);
+    verbose(`> Returning ${portionSize} bytes of data. CRC: ${toHex(blockChecksum, 8)}`);
     return [
         `\r\n+${at.command}: ${portionSize}\r\n`,
         portion,
